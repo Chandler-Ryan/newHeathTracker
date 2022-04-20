@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('weights', function (Blueprint $table) {
+        Schema::create('workouts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->decimal('amount', 5, 1);
-            $table->date('date');
             $table->timestamps();
-            $table->unique(['user_id', 'date']);
+            $table->foreignId('daily_record_id')->constrained()->onDelete('cascade');
+            $table->enum('type', ['Indoor Run', 'Outdoor Run', 'Indoor Bike', 'Outdoor Bike', 'Indoor Walk', 'Outdoor Walk', 'Strength', 'Other']);
+            $table->time('duration')->nullable();
+            $table->decimal('distance', 8, 2)->nullable();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weights');
+        Schema::dropIfExists('workouts');
     }
 };

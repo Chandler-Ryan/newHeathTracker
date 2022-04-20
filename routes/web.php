@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('weight', App\Http\Controllers\WeightController::class);
+Route::resource('record', App\Http\Controllers\DailyRecordController::class);
+Route::resource('record/{record}/workout', App\Http\Controllers\WorkoutController::class);

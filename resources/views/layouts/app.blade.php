@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="@auth {{ url('/home') }} @else {{ url('/') }} @endauth">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -76,6 +76,16 @@
         </nav>
 
         <main class="py-4">
+            @if($errors->any())
+                <div class="container">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li> 
+                        @endforeach
+                        <button type="button" class="btn-close"  data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>
