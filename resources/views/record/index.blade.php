@@ -14,6 +14,9 @@
     th.add{
         text-align:right;
     }
+    a{
+        color:black;
+    }
 </style>
 <div class="container">
     <div class="row justify-content-center">
@@ -35,7 +38,7 @@
                 <tbody>
                 @foreach ($records as $record)
                     <tr>
-                        <td>{{$record->record_date}}</td>
+                        <td><a href="/record/{{$record->id}}">{{$record->record_date}}</a></td>
                         <td>{{$record->weight}}</td>
                         <td>{{$record->systolic}} / {{$record->diastolic}}</td>
                         <td>{{$record->resting_heartrate}}</td>

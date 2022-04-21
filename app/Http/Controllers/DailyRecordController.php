@@ -24,7 +24,7 @@ class DailyRecordController extends Controller
      */
     public function index()
     {
-        return view('record.index', ['records' => DailyRecord::with('workouts')->where('user_id', \Auth::id())->orderByDesc('record_date')->get() ]);
+        return view('record.index', ['records' => DailyRecord::where('user_id', \Auth::id())->orderByDesc('record_date')->get() ]);
     }
 
     /**
@@ -61,21 +61,21 @@ class DailyRecordController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\DailyRecord  $dailyRecord
+     * @param  \App\Models\DailyRecord  $record
      * @return \Illuminate\Http\Response
      */
-    public function show(DailyRecord $dailyRecord)
+    public function show(DailyRecord $record)
     {
-        //
+        return view('record.show', ['record' => $record]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\DailyRecord  $dailyRecord
+     * @param  \App\Models\DailyRecord  $record
      * @return \Illuminate\Http\Response
      */
-    public function edit(DailyRecord $dailyRecord)
+    public function edit(DailyRecord $record)
     {
         //
     }
@@ -84,10 +84,10 @@ class DailyRecordController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DailyRecord  $dailyRecord
+     * @param  \App\Models\DailyRecord  $record
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DailyRecord $dailyRecord)
+    public function update(Request $request, DailyRecord $record)
     {
         //
     }
@@ -95,7 +95,7 @@ class DailyRecordController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\DailyRecord  $dailyRecord
+     * @param  \App\Models\DailyRecord  $record
      * @return \Illuminate\Http\Response
      */
     public function destroy(DailyRecord $record)

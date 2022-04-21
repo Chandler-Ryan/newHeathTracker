@@ -55,6 +55,27 @@ class DailyRecordSeeder extends Seeder
             ]
         ]);
 
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-04-20',
+            'weight' => 298,
+            'systolic' => 136,
+            'diastolic' => 88,
+            'resting_heartrate' => 51,
+            'steps' => 10311
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Walk',
+                'duration' => '00:30:00',
+                'distance' => 1.72
+            ],
+            [
+                'type' => 'Indoor Run',
+                'duration' => '00:35:00',
+                'distance' => 2.18
+            ]
+        ]);
 
     }
 }

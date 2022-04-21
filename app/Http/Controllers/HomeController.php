@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $weights = \App\Models\Weight::where('user_id', \Auth::id())->orderByDesc('date')->take(10)->get();
-        return view('home', ['weights' => $weights]);
+        $records = \App\Models\DailyRecord::where('user_id', \Auth::id())->orderByDesc('record_date')->take(7)->get();
+        return view('home', ['records' => $records]);
     }
 }
