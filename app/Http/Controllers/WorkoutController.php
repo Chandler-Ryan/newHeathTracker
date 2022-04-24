@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class WorkoutController extends Controller
 {
+    protected $woTypes = ['Indoor Run','Outdoor Run','Indoor Bike','Outdoor Bike','Indoor Walk','Outdoor Walk','Strength','Other'];
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +15,7 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->route('record.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class WorkoutController extends Controller
      */
     public function create()
     {
-        return view('workout.create', ['edit'=> false]);
+        return view('workout.create', ['edit'=> false, 'woTypes'=>$this->woTypes]);
     }
 
     /**
@@ -38,7 +39,7 @@ class WorkoutController extends Controller
         $workout = $request->validate([
             'duration' => array('regex:/^([01]?[0-9]|2[0-3])\:+[0-5][0-9]$/'),
             'distance' => 'numeric|nullable',
-            'type' => 'in:Indoor Run,Outdoor Run,Indoor Bike,Outdoor Bike,Indoor Walk,Outdoor Walk,Strength,Other',
+            'type' => 'in:'.implode(',', $this->woTypes),
             'daily_record_id' => 'exists:daily_records,id|in:'.$record
         ]);
 
@@ -52,9 +53,9 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function show(Workout $workout)
+    public function show($record, Workout $workout)
     {
-        
+        return redirect()->route('record.show', $record);
     }
 
     /**
@@ -63,9 +64,9 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function edit(Workout $workout)
+    public function edit($record, Workout $workout)
     {
-        //
+        return view('workout.create', ['edit'=> true, 'workout' => $workout, 'record' => $record, 'woTypes'=>$this->woTypes]);
     }
 
     /**
@@ -75,9 +76,17 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Workout $workout)
+    public function update($record, Request $request, Workout $workout)
     {
-        //
+        $val = $request->validate([
+            'duration' => array('regex:/^([01]?[0-9]|2[0-3])\:+[0-5][0-9]$/'),
+            'distance' => 'numeric|nullable',
+            'type' => 'in:'.implode(',', $this->woTypes),
+            'daily_record_id' => 'exists:daily_records,id|in:'.$record
+        ]);
+
+        $workout->update($val);
+        return redirect()->route('record.show', $record);
     }
 
     /**
@@ -86,8 +95,9 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Workout $workout)
+    public function destroy($record, Workout $workout)
     {
-        //
+        $workout->delete();
+        return redirect()->route('record.show', $record);
     }
 }

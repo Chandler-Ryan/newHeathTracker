@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('systolic')->nullable();
             $table->unsignedInteger('diastolic')->nullable();
             $table->unsignedInteger('resting_heartrate')->nullable();
+            $table->unsignedInteger('bloodsugar')->nullable();
             $table->unsignedInteger('steps')->nullable();
         });
     }

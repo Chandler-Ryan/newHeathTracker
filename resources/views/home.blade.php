@@ -38,10 +38,11 @@
                                     <th>Date</th>
                                     <th>Weight</th>
                                     <th>BP</th>
-                                    <th>Resting HR</th>
+                                    <th>R-HR</th>
+                                    <th>Blood Sugar</th>
                                     <th>Steps</th>
-                                    <th>Workout Count</th>
-                                    <th>Workout Duration</th>
+                                    <th>WO's</th>
+                                    <th>WO Time</th>
                                 </tr>
                                 @foreach ($records as $record)
                                 <tr>
@@ -49,6 +50,7 @@
                                     <td>{{$record->weight}}</td>
                                     <td>{{$record->systolic}} / {{$record->diastolic}}</td>
                                     <td>{{$record->resting_heartrate}}</td>
+                                    <td>{{$record->bloodsugar}}</td>
                                     <td>{{$record->steps}}</td>
                                     <td>{{isset($record->workouts) ? $record->workouts->count() : '0'}}</td>
                                     <td>{{isset($record->workouts) ? date('H:i', strtotime(AddTime($record->workouts->pluck('duration')->toArray()))) : 'no'}}</td>
@@ -75,16 +77,18 @@
                                 <tr>
                                     <th>Weight</th>
                                     <th>BP</th>
-                                    <th>Resting HR</th>
+                                    <th>R-HR</th>
+                                    <th>Blood Sugar</th>
                                     <th>Steps</th>
-                                    <th>Workout Count</th>
-                                    <th>Workout Duration</th>
+                                    <th>WO's</th>
+                                    <th>WO Time</th>
                                 </tr>
 
                                 <tr>
                                     <td>{{floor($records->avg("weight"))}}</td>
                                     <td>{{floor($records->avg("systolic"))}} / {{floor($records->avg("diastolic"))}}</td>
                                     <td>{{floor($records->avg("resting_heartrate"))}}</td>
+                                    <td>{{floor($records->avg("bloodsugar"))}}</td>
                                     <td>{{floor($records->avg("steps"))}}</td>
                                     <td>{{round($records->sum(function ($record) {return $record->workouts->count();}) / $records->count(), 2)}}</td>
                                     <td></td>

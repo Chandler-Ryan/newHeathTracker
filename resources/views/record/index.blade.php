@@ -28,10 +28,11 @@
                         <th>Date</th>
                         <th>Weight</th>
                         <th>BP</th>
-                        <th>Resting HR</th>
+                        <th>R-HR</th>
+                        <th>Blood Sugar</th>
                         <th>Steps</th>
-                        <th>Workout Count</th>
-                        <th>Workout Duration</th>
+                        <th>WO's</th>
+                        <th>WO Time</th>
                         <th class="add"><a href="/record/create" class="btn btn-outline-primary">Add Daily Record</a></th>
                     </tr>
                 </thead>
@@ -42,6 +43,7 @@
                         <td>{{$record->weight}}</td>
                         <td>{{$record->systolic}} / {{$record->diastolic}}</td>
                         <td>{{$record->resting_heartrate}}</td>
+                        <td>{{$record->bloodsugar}}</td>
                         <td>{{$record->steps}}</td>
                         <td>{{isset($record->workouts) ? $record->workouts->count() : '0'}}</td>
                         <td>{{isset($record->workouts) ? date('H:i', strtotime(AddTime($record->workouts->pluck('duration')->toArray()))) : 'no'}}</td>

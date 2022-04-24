@@ -13,7 +13,7 @@
         @endif
             @csrf
             <div class="row">
-                <div class="col-8 mx-auto">
+                <div class="col-md-8 mx-auto">
                     <div class="form-floating mb-3">
                         <input type="date" class="form-control{{$errors->has('record_date') ? ' is-invalid' : '' }}" id="floatingdate" name="record_date" value="{{$weight->record_date ?? old('record_date') ?? date('Y-m-d')}}">
                         <label for="floatingdate">Date</label>
@@ -25,9 +25,9 @@
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Systolic</span>
-                        <input type="number" class="form-control{{$errors->has('systolic') ? ' is-invalid' : '' }}" placeholder="120" step="1" min="80" max="180" name="systolic">
+                        <input type="number" class="form-control{{$errors->has('systolic') ? ' is-invalid' : '' }}" placeholder="120" step="1" min="80" max="180" name="systolic" value="{{$record->systolic ?? old('systolic')}}">
                         <span class="input-group-text">/</span>
-                        <input type="number" class="form-control{{$errors->has('diastolic') ? ' is-invalid' : '' }}" placeholder="80" step="1" min="50" max="150" name="diastolic">
+                        <input type="number" class="form-control{{$errors->has('diastolic') ? ' is-invalid' : '' }}" placeholder="80" step="1" min="50" max="150" name="diastolic" value="{{$record->diastolic ?? old('diastolic')}}">
                         <span class="input-group-text">Diastolic</span>
                     </div>
                     <div class="form-floating mb-3">
@@ -35,12 +35,21 @@
                         <label for="resting_heartrate">Resting Heartrate</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <input type="number" class="form-control{{$errors->has('bloodsugar') ? ' is-invalid' : '' }}" id="bloodsugar" placeholder="125" step="1" name="bloodsugar" value="{{$record->bloodsugar ?? old('bloodsugar')}}">
+                        <label for="bloodsugar">Blood Sugar</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <input type="number" class="form-control{{$errors->has('steps') ? ' is-invalid' : '' }}" id="steps" step="1" placeholder="Steps" name="steps" value="{{$record->steps ?? old('steps')}}">
                         <label for="steps">Steps</label>
                     </div>
                 </div>
-                <div class="pt-3">
-                    <button type="submit" class="btn btn-outline-primary">{{$edit ? 'Edit' : 'Add'}} Daily Record</button>
+                <div class="row PB-3">
+                    <div class="col-6">
+                        <a href="/record" class="btn btn-outline-warning"><i class="far fa-hand-point-left"></i><span class="pl-5">Back</span></a>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="submit" class="btn btn-outline-primary">{{$edit ? 'Edit' : 'Add'}} Workout</button>
+                    </div>
                 </div>
             </div>
         </form>

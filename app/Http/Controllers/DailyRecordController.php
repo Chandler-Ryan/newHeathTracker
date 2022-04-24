@@ -50,9 +50,10 @@ class DailyRecordController extends Controller
             'record_date' => ['required', 'unique:daily_records,record_date,NULL,id,user_id,'.\Auth::id()],
             'steps' => 'integer|numeric|nullable',
             'resting_heartrate' => 'integer|numeric|nullable',
+            'bloodsugar' => 'integer|numeric|nullable',
             'diastolic' => 'integer|numeric|nullable',
             'systolic' => 'integer|numeric|nullable',
-            'weight' => 'integer|numeric|nullable'
+            'weight' => 'numeric|nullable'
             ])
         );
         return redirect()->route('record.index');
@@ -77,7 +78,7 @@ class DailyRecordController extends Controller
      */
     public function edit(DailyRecord $record)
     {
-        //
+        return view('record.create', ['edit'=> true, 'record' => $record]);
     }
 
     /**
@@ -89,7 +90,23 @@ class DailyRecordController extends Controller
      */
     public function update(Request $request, DailyRecord $record)
     {
-        //
+        $val = $request->validate([
+            'steps' => 'integer|numeric|nullable',
+            'resting_heartrate' => 'integer|numeric|nullable',
+            'bloodsugar' => 'integer|numeric|nullable',
+            'diastolic' => 'integer|numeric|nullable',
+            'systolic' => 'integer|numeric|nullable',
+            'weight' => 'numeric|nullable'
+        ]);
+        $record->update([
+            'steps' => $val['steps'],
+            'resting_heartrate' => $val['resting_heartrate'],
+            'bloodsugar' => $val['bloodsugar'],
+            'diastolic' => $val['diastolic'],
+            'systolic' => $val['systolic'],
+            'weight' => $val['weight']
+        ]);
+        return redirect()->route('record.show', $record->id);
     }
 
     /**

@@ -6,7 +6,7 @@
     <div class="text-center pt-5">
         @if ($edit)
             <h1>Edit Workout</h1>
-            <form action="/record/{{request()->route('record')}}/workout/{{request()->route('workout')}}" method="post">
+            <form action="/record/{{request()->route('record')}}/workout/{{$workout->id}}" method="post">
             @method('PUT')
         @else
             <h1>Add Workout</h1>            
@@ -17,20 +17,15 @@
                 <div class="col-8 mx-auto">
                     <div class="mb-3">
                         <select class="form-select" name="type">
-                            <option selected>Workout Type</option>
-                            <option>Indoor Run</option>
-                            <option>Outdoor Run</option>
-                            <option>Indoor Bike</option>
-                            <option>Outdoor Bike</option>
-                            <option>Indoor Walk</option>
-                            <option>Outdoor Walk</option>
-                            <option>Strength</option>
-                            <option>Other</option>
+                            <option {{(isset($workout->type) || old('type') !== null) ? '' : 'selected'}}>Workout Type</option>
+                            @foreach ($woTypes as $type)
+                                <option {{(isset($workout->type) && $workout->type == $type || old('type') == $type) ? 'selected' : ''}}>{{$type}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" pattern="/^([01]?[0-9]|2[0-3])\:+[0-5][0-9]$/"class="form-control{{$errors->has('duration') ? ' is-invalid' : '' }}" id="floatingdate" name="duration" value="{{$workout->duration ?? old('duration')}}" placeholder="Duration">
+                        <input type="text" pattern="^([01]?[0-9]|2[0-3])\:+[0-5][0-9]$"class="form-control{{$errors->has('duration') ? ' is-invalid' : '' }}" id="floatingdate" name="duration" value="{{$workout->duration ?? old('duration')}}" placeholder="Duration">
                         <label for="floatingdate">Duration format hh:mm</label>
                     </div>
                     <div class="form-floating mb-3">
