@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control{{$errors->has('record_date') ? ' is-invalid' : '' }}" id="floatingdate" name="record_date" value="{{$weight->record_date ?? old('record_date') ?? date('Y-m-d')}}">
+                        <input type="date" class="form-control{{$errors->has('record_date') ? ' is-invalid' : '' }}" id="floatingdate" name="record_date" value="{{$record->record_date ?? old('record_date') ?? date('Y-m-d')}}">
                         <label for="floatingdate">Date</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -47,7 +47,7 @@
                     <div class="col-6">
                         <a href="/record" class="btn btn-outline-warning"><i class="far fa-hand-point-left"></i><span class="pl-5">Back</span></a>
                     </div>
-                    <div class="col-6 text-end">
+                    <div class="col-6">
                         <button type="submit" class="btn btn-outline-primary">{{$edit ? 'Edit' : 'Add'}} Workout</button>
                     </div>
                 </div>
