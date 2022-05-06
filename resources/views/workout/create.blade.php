@@ -14,7 +14,7 @@
         @endif
             @csrf
             <div class="row">
-                <div class="col-8 mx-auto">
+                <div class="col-md-8 mx-auto">
                     <div class="mb-3">
                         <select class="form-select" name="type">
                             <option {{(isset($workout->type) || old('type') !== null) ? '' : 'selected'}}>Workout Type</option>
@@ -34,8 +34,13 @@
                     </div>
                     <input type="hidden" name="daily_record_id" value="{{request()->route('record')}}">
                 </div>
-                <div class="pt-3">
-                    <button type="submit" class="btn btn-outline-primary">{{$edit ? 'Edit' : 'Add'}} Workout</button>
+                <div class="row py-3">
+                    <div class="col-6">
+                        <a href="/record/{{request()->route('record')}}" class="btn btn-outline-warning"><i class="far fa-hand-point-left"></i><span class="pl-5">Back</span></a>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-outline-primary">{{$edit ? 'Update' : 'Add'}} Workout</button>
+                    </div>
                 </div>
             </div>
         </form>

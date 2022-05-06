@@ -48,7 +48,7 @@
                         <a href="/record" class="btn btn-outline-warning"><i class="far fa-hand-point-left"></i><span class="pl-5">Back</span></a>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-outline-primary">{{$edit ? 'Edit' : 'Add'}} Workout</button>
+                        <button type="submit" class="btn btn-outline-primary">{{$edit ? 'Update' : 'Add'}} Record</button>
                     </div>
                 </div>
             </div>

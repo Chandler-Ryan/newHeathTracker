@@ -2,9 +2,6 @@
 
 @section('content')
 <style>
-    td,th{
-        text-align: center;
-    }
     a{
         color:black;
     }
@@ -46,14 +43,14 @@
                                 </tr>
                                 @foreach ($records as $record)
                                 <tr>
-                                    <td><a href="/record/{{$record->id}}">{{$record->record_date}}</a></td>
-                                    <td>{{$record->weight}}</td>
-                                    <td>{{$record->systolic}} / {{$record->diastolic}}</td>
-                                    <td>{{$record->resting_heartrate}}</td>
-                                    <td>{{$record->bloodsugar}}</td>
-                                    <td>{{$record->steps}}</td>
-                                    <td>{{isset($record->workouts) ? $record->workouts->count() : '0'}}</td>
-                                    <td>{{isset($record->workouts) ? date('H:i', strtotime(AddTime($record->workouts->pluck('duration')->toArray()))) : 'no'}}</td>
+                                    <td data-th="Date:"><a href="/record/{{$record->id}}">{{date('M d, Y',strtotime($record->record_date))}}</a></td>
+                                    <td data-th="Weight:">{{$record->weight ?? 0}}</td>
+                                    <td data-th="Blood Pressure:">{{$record->systolic ?? 0}} / {{$record->diastolic ?? 0}}</td>
+                                    <td data-th="Resting Heartrate:">{{$record->resting_heartrate ?? 0}}</td>
+                                    <td data-th="Blood Sugar:">{{$record->bloodsugar ?? 0}}</td>
+                                    <td data-th="Steps:">{{$record->steps ?? 0}}</td>
+                                    <td data-th="Workout Count:">{{isset($record->workouts) ? $record->workouts->count() : '0'}}</td>
+                                    <td data-th="Duration:">{{isset($record->workouts) ? date('H:i', strtotime(AddTime($record->workouts->pluck('duration')->toArray()))) : 'no'}}</td>
                                 </tr>                                    
                                 @endforeach        
                             </table>
@@ -85,13 +82,13 @@
                                 </tr>
 
                                 <tr>
-                                    <td>{{floor($records->avg("weight"))}}</td>
-                                    <td>{{floor($records->avg("systolic"))}} / {{floor($records->avg("diastolic"))}}</td>
-                                    <td>{{floor($records->avg("resting_heartrate"))}}</td>
-                                    <td>{{floor($records->avg("bloodsugar"))}}</td>
-                                    <td>{{floor($records->avg("steps"))}}</td>
-                                    <td>{{round($records->sum(function ($record) {return $record->workouts->count();}) / $records->count(), 2)}}</td>
-                                    <td></td>
+                                    <td data-th="Weight:" class="notRowLabel">{{floor($records->avg("weight")) ?? 0}}</td>
+                                    <td data-th="Blood Pressure:">{{floor($records->avg("systolic")) ?? 0}} / {{floor($records->avg("diastolic")) ?? 0}}</td>
+                                    <td data-th="Resting Heartrate:">{{floor($records->avg("resting_heartrate")) ?? 0}}</td>
+                                    <td data-th="Blood Sugar:">{{floor($records->avg("bloodsugar")) ?? 0}}</td>
+                                    <td data-th="Steps:">{{floor($records->avg("steps")) ?? 0}}</td>
+                                    <td data-th="Workout Count:">{{round($records->sum(function ($record) {return $record->workouts->count();}) / $records->count(), 2) ?? 0}}</td>
+                                    <td data-th="Duration:">unsetup</td>
                                 </tr>                                         
                             </table>
 

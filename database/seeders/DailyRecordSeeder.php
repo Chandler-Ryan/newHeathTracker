@@ -122,7 +122,7 @@ class DailyRecordSeeder extends Seeder
             'systolic' => 118,
             'diastolic' => 80,
             'resting_heartrate' => 48,
-            'steps' => 7130
+            'steps' => 7600
         ]);
         $record->workouts()->createMany([
             [
@@ -139,7 +139,7 @@ class DailyRecordSeeder extends Seeder
             'diastolic' => 71,
             'resting_heartrate' => 55,
             'bloodsugar' => 97,
-            'steps' => 7130
+            'steps' => 4251
         ]);
         $record->workouts()->createMany([
             [
@@ -148,6 +148,233 @@ class DailyRecordSeeder extends Seeder
                 'distance' => 14
             ]
         ]);
-
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-04-25',
+            'weight' => 299,
+            'systolic' => 123,
+            'diastolic' => 78,
+            'resting_heartrate' => 46,
+            'bloodsugar' => 100,
+            'steps' => 10295
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Walk',
+                'duration' => '00:15:00',
+                'distance' => 0.8
+            ],
+            [
+                'type' => 'Indoor Run',
+                'duration' => '00:51:00',
+                'distance' => 3.54
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-04-26',
+            'weight' => 301,
+            'systolic' => 127,
+            'diastolic' => 79,
+            'resting_heartrate' => 48,
+            'bloodsugar' => 99,
+            'steps' => 3616
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Bike',
+                'duration' => '00:37:00',
+                'distance' => 12
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-04-27',
+            'weight' => 299,
+            'systolic' => 128,
+            'diastolic' => 82,
+            'resting_heartrate' => 48,
+            'bloodsugar' => 92,
+            'steps' => 10295
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Walk',
+                'duration' => '00:15:00',
+                'distance' => 0.8
+            ],
+            [
+                'type' => 'Indoor Run',
+                'duration' => '00:51:00',
+                'distance' => 3.54
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-04-28',
+            'weight' => 296,
+            'systolic' => 130,
+            'diastolic' => 83,
+            'resting_heartrate' => 46,
+            'bloodsugar' => 93,
+            'steps' => 2949
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Bike',
+                'duration' => '00:40:00',
+                'distance' => 12
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-04-29',
+            'weight' => 294,
+            'systolic' => 127,
+            'diastolic' => 87,
+            'resting_heartrate' => 48,
+            'bloodsugar' => 98,
+            'steps' => 13821
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Walk',
+                'duration' => '00:15:00',
+                'distance' => 0.8
+            ],
+            [
+                'type' => 'Indoor Run',
+                'duration' => '00:47:00',
+                'distance' => 3.1
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-04-30',
+            'weight' => 296,
+            'systolic' => 137,
+            'diastolic' => 88,
+            'resting_heartrate' => 52,
+            'steps' => 4716
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Bike',
+                'duration' => '00:31:00',
+                'distance' => 8
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-05-01',
+            'weight' => 298,
+            'systolic' => 126,
+            'diastolic' => 82,
+            'resting_heartrate' => 52,
+            'bloodsugar' => 109,
+            'steps' => 5004
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Bike',
+                'duration' => '00:30:00',
+                'distance' => 8
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-05-02',
+            'weight' => 300,
+            'systolic' => 125,
+            'diastolic' => 80,
+            'resting_heartrate' => 47,
+            'bloodsugar' => 95,
+            'steps' => 19325
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Walk',
+                'duration' => '00:15:00',
+                'distance' => 0.8
+            ],
+            [
+                'type' => 'Indoor Run',
+                'duration' => '01:19:00',
+                'distance' => 5.14
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-05-03',
+            'weight' => 297,
+            'systolic' => 131,
+            'diastolic' => 87,
+            'resting_heartrate' => 48,
+            'bloodsugar' => 86,
+            'steps' => 4351
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Bike',
+                'duration' => '00:30:00',
+                'distance' => 8
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-05-04',
+            'weight' => 295,
+            'systolic' => 124,
+            'diastolic' => 79,
+            'resting_heartrate' => 47,
+            'bloodsugar' => 118,
+            'steps' => 20215
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Walk',
+                'duration' => '00:15:00',
+                'distance' => 0.81
+            ],
+            [
+                'type' => 'Indoor Run',
+                'duration' => '01:21:00',
+                'distance' => 5.13
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-05-05',
+            'weight' => 296,
+            'systolic' => 124,
+            'diastolic' => 82,
+            'resting_heartrate' => 49,
+            'bloodsugar' => 110,
+            'steps' => 3420
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Bike',
+                'duration' => '00:30:00',
+                'distance' => 8
+            ]
+        ]);
+        $record = DailyRecord::create([
+            'user_id' => 1,
+            'record_date' => '2022-05-06',
+            'weight' => 300,
+            'systolic' => 132,
+            'diastolic' => 76,
+            'resting_heartrate' => 51,
+            'bloodsugar' => 114,
+            'steps' => 7964
+        ]);
+        $record->workouts()->createMany([
+            [
+                'type' => 'Indoor Run',
+                'duration' => '00:45:00',
+                'distance' => 3.30
+            ]
+        ]);
     }
 }

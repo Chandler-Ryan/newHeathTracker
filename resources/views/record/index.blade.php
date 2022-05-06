@@ -5,15 +5,6 @@
     form{
         display:inline;
     }
-    td, th{
-        text-align:center;
-    }
-    td.controls{
-        text-align: right;
-    }
-    th.add{
-        text-align:right;
-    }
     a{
         color:black;
     }
@@ -25,29 +16,29 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Weight</th>
-                        <th>BP</th>
-                        <th>R-HR</th>
-                        <th>Blood Sugar</th>
-                        <th>Steps</th>
-                        <th>WO's</th>
-                        <th>WO Time</th>
-                        <th class="add"><a href="/record/create" class="btn btn-outline-primary">Add Daily Record</a></th>
+                        <th class="d-none d-md-table-cell">Date</th>
+                        <th class="d-none d-md-table-cell">Weight</th>
+                        <th class="d-none d-md-table-cell">BP</th>
+                        <th class="d-none d-md-table-cell">R-HR</th>
+                        <th class="d-none d-md-table-cell">BS</th>
+                        <th class="d-none d-md-table-cell">Steps</th>
+                        <th class="d-none d-md-table-cell">WO's</th>
+                        <th class="d-none d-md-table-cell">WO Time</th>
+                        <th class="add d-block d-md-table-cell"><a href="/record/create" class="btn btn-outline-primary">Add Daily Record</a></th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($records as $record)
                     <tr>
-                        <td><a href="/record/{{$record->id}}">{{$record->record_date}}</a></td>
-                        <td>{{$record->weight}}</td>
-                        <td>{{$record->systolic}} / {{$record->diastolic}}</td>
-                        <td>{{$record->resting_heartrate}}</td>
-                        <td>{{$record->bloodsugar}}</td>
-                        <td>{{$record->steps}}</td>
-                        <td>{{isset($record->workouts) ? $record->workouts->count() : '0'}}</td>
-                        <td>{{isset($record->workouts) ? date('H:i', strtotime(AddTime($record->workouts->pluck('duration')->toArray()))) : 'no'}}</td>
-                        <td class="controls">
+                        <td data-th="Date:" class="d-block d-md-table-cell"><a href="/record/{{$record->id}}">{{date('M d, Y',strtotime($record->record_date))}}</a></td>
+                        <td data-th="Weight:" class="d-block d-md-table-cell">{{$record->weight ?? 0}}</td>
+                        <td data-th="Blood Pressure:" class="d-block d-md-table-cell">{{$record->systolic}} / {{$record->diastolic}}</td>
+                        <td data-th="Resting Heartrate:" class="d-block d-md-table-cell">{{$record->resting_heartrate ?? 0}}</td>
+                        <td data-th="Blood Sugar:" class="d-block d-md-table-cell">{{$record->bloodsugar ?? 0}}</td>
+                        <td data-th="Steps:" class="d-block d-md-table-cell">{{$record->steps ?? 0}}</td>
+                        <td data-th="Workout Count:" class="d-block d-md-table-cell">{{isset($record->workouts) ? $record->workouts->count() : '0'}}</td>
+                        <td data-th="Workout Duration:" class="d-block d-md-table-cell">{{isset($record->workouts) ? date('H:i', strtotime(AddTime($record->workouts->pluck('duration')->toArray()))) : 'no'}}</td>
+                        <td class="controls d-flex justify-content-evenly d-md-table-cell">
                             <a href="/record/{{$record->id}}/workout/create" class="btn btn-outline-success">+WO</a>
                             <a href="/record/{{$record->id}}/edit" class="btn btn-outline-warning">Edit</a>
                             <form action="record/{{$record->id}}" method="POST">
